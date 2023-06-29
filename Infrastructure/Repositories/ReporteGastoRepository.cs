@@ -21,6 +21,7 @@ public class ReporteGastoRepository : GenericRepository<ReporteGasto>, IReporteG
     {
         return await _context.ReporteGastos
                         .Include(p => p.Facturas)
+                        .ThenInclude(f => f.FacturaDetalles)
                         .FirstOrDefaultAsync(p => p.Id == id);
 
     }
@@ -29,6 +30,15 @@ public class ReporteGastoRepository : GenericRepository<ReporteGasto>, IReporteG
     {
         return await _context.ReporteGastos
                             .Include(p => p.Facturas)
+                            .ThenInclude(f => f.FacturaDetalles)
+                            .Where(p => p.Estatus == false)
+                            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<ReporteGasto>> GetAllPendientesAsync()
+    {
+        return await _context.Database
+                            .ExecuteSqlAsync($"EXECUTE SpVticosReportes ")
                             .ToListAsync();
     }
 

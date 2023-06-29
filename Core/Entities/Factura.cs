@@ -48,7 +48,7 @@ public class Factura : BaseEntity
     /// <summary>
     /// Fecha del timbrado de la factura
     /// </summary>
-    public DateTime? FechaTimbrado { get; set; }
+    public DateTime FechaTimbrado { get; set; }
 
     /// <summary>
     /// Fecha de la insercion de la factura
@@ -58,8 +58,14 @@ public class Factura : BaseEntity
     /// <summary>
     /// XML de la factura
     /// </summary>
-    public string XmlFactura { get; set; } = null!;
+    public string XmlFactura { get; set; }
 
-    public ReporteGasto ReporteGastos { get; set; } = null!;
+    public ReporteGasto ReporteGasto { get; set; }
+
+    public Factura()
+    {
+        FacturaDetalles = new List<FacturaDetalle>();
+    }
+    public ICollection<FacturaDetalle> FacturaDetalles { get; set; }
 
 }

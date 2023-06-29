@@ -32,7 +32,7 @@ public class FacturaDetalleConfiguration : IEntityTypeConfiguration<FacturaDetal
             .HasComment("Valor unitario de servicio o producto")
             .HasColumnType("money");
 
-        builder.HasOne(d => d.Factura).WithMany()
+        builder.HasOne(d => d.Factura).WithMany(p => p.FacturaDetalles)
             .HasForeignKey(d => d.FacturaId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Viaticos_Factura_FacturaID");

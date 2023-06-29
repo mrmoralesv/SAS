@@ -23,7 +23,7 @@ public class FacturaDetalle : BaseEntity
     /// <summary>
     /// Descripcion de servicio o producto
     /// </summary>
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; }
 
     /// <summary>
     /// Valor unitario de servicio o producto
@@ -38,7 +38,7 @@ public class FacturaDetalle : BaseEntity
     /// <summary>
     /// Notas para el administrador de los viaticos
     /// </summary>
-    public string? Notas { get; set; }
+    public string Notas { get; set; }
 
-    public Factura Factura { get; set; } = null!;
+    public Factura Factura { get; set; }
 }

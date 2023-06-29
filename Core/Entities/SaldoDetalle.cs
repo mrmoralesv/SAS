@@ -13,12 +13,12 @@ public class SaldoDetalle : BaseEntity
     /// <summary>
     /// Aumentos y disminuciones de saldo
     /// </summary>
-    public decimal SaldoAD { get; set; }
+    public decimal? SaldoAD { get; set; }
 
     /// <summary>
     /// Descripcion del aumento o disminucion de saldo
     /// </summary>
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; }
 
     public Saldo Saldo { get; set; } = null!;
 }

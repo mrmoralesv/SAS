@@ -21,6 +21,6 @@ public class SaldoConfiguration : IEntityTypeConfiguration<Saldo>
         builder.Property(e => e.SaldoAD)
             .HasComment("Aumentos y disminuciones de saldo")
             .HasColumnType("money")
-            .HasColumnName("Saldo");
+            .HasColumnName("SaldoAD");
     }
 }

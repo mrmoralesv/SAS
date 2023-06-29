@@ -10,6 +10,8 @@ public class MappingProfiles : Profile
         CreateMap<ReporteGasto, ReporteGastoDto>().ReverseMap();
 
         CreateMap<Factura, FacturaDto>().ReverseMap();
+
+        CreateMap<FacturaDetalle, FacturaDetalleDto>().ReverseMap();
         
         //CreateMap<Producto, ProductoAddUpdateDto>()
         //    .ReverseMap()

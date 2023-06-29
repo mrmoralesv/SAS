@@ -18,7 +18,7 @@ public class Saldo : BaseEntity
     /// <summary>
     /// Aumentos y disminuciones de saldo
     /// </summary>
-    public decimal SaldoAD { get; set; }
+    public decimal? SaldoAD { get; set; }
 
-    public string? Descripcion { get; set; }
+    public string Descripcion { get; set; }
 }

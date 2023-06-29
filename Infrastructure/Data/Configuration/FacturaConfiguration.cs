@@ -54,7 +54,7 @@ public class FacturaConfiguration : IEntityTypeConfiguration<Factura>
             .HasComment("XML de la factura")
             .HasColumnType("xml");
 
-        builder.HasOne(d => d.ReporteGastos).WithMany(p => p.Facturas)
+        builder.HasOne(d => d.ReporteGasto).WithMany(p => p.Facturas)
             .HasForeignKey(d => d.ReporteGastoId)
             .OnDelete(DeleteBehavior.ClientSetNull);
     }

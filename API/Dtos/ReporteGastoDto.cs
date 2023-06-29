@@ -3,7 +3,7 @@ public class ReporteGastoDto
 {
     public ReporteGastoDto()
     {
-        Factura = new List<FacturaDto>();
+        Facturas = new List<FacturaDto>();
     }
     public int Id { get; set; }
     public int ViaticoId { get; set; }
@@ -12,5 +12,5 @@ public class ReporteGastoDto
     public bool Estatus { get; set; }
     public DateTime FechaInsert { get; set; }
 
-    public ICollection<FacturaDto> Factura { get; set; }
+    public ICollection<FacturaDto> Facturas { get; set; }
 }
