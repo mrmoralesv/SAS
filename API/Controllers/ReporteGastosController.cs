@@ -15,15 +15,26 @@ public class ReporteGastosController : BaseApiController
         _mapper = mapper;
     }
 
+    //[HttpGet]
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+    //public async Task<ActionResult<IEnumerable<ReporteGastoDto>>> Get()
+    //{
+    //    var reporteGastos = await _unitOfWork.ReporteGastos
+    //        .GetAllAsync();
+    //    var reporteGastosDto = _mapper.Map<List<ReporteGastoDto>>(reporteGastos);
+    //    return Ok(reporteGastosDto);
+    //}
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<ReporteGastoDto>>> Get()
+    public async Task<ActionResult<IEnumerable<ReportesPendientesDto>>> Get()
     {
-        var reporteGastos = await _unitOfWork.ReporteGastos
-            .GetAllAsync();
-        var reporteGastosDto = _mapper.Map<List<ReporteGastoDto>>(reporteGastos);
-        return Ok(reporteGastosDto);
+        var reportesPendientes = await _unitOfWork.ReporteGastos
+            .GetAllPendientesAsync();
+        var reportesPendientesDto = _mapper.Map<List<ReportesPendientesDto>>(reportesPendientes);
+        return Ok(reportesPendientesDto);
     }
 
     [HttpGet("{id}")]

@@ -1,5 +1,7 @@
-﻿using Core.Entities;
+﻿using Core.Dtos;
+using Core.Entities;
 using Core.Interfaces;
+using Dapper;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -35,11 +37,16 @@ public class ReporteGastoRepository : GenericRepository<ReporteGasto>, IReporteG
                             .ToListAsync();
     }
 
-    public async Task<IEnumerable<ReporteGasto>> GetAllPendientesAsync()
+    public async Task<IEnumerable<ReportePendienteDto>> GetAllPendientesAsync()
     {
-        return await _context.Database
-                            .ExecuteSqlAsync($"EXECUTE SpVticosReportes ")
-                            .ToListAsync();
+        var query = @"EXECUTE SpVticosReportes 1,0,''";
+
+        using (var connection = _context.Database.GetDbConnection())
+        {
+            var reportesPendientes = await connection.QueryAsync<ReportePendienteDto> (query);
+            
+            return reportesPendientes;
+        }
     }
 
 }
