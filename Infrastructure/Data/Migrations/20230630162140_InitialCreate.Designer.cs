@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(SASContext))]
-    partial class SASContextModelSnapshot : ModelSnapshot
+    [Migration("20230630162140_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CatalogoProdServ", "Viaticos");
+                    b.ToTable("CatalogoProducto", "Viaticos");
                 });
 
             modelBuilder.Entity("Core.Entities.DatabaseLog", b =>
@@ -262,7 +265,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductoOServicio", "Viaticos");
+                    b.ToTable("ProductoValido", "Viaticos");
                 });
 
             modelBuilder.Entity("Core.Entities.ReporteGasto", b =>

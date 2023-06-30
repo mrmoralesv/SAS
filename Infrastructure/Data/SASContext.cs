@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Core.Entities;
 using System.Reflection;
-using Microsoft.Identity.Client;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.Data;
 
@@ -16,7 +14,7 @@ public class SASContext : DbContext
     {
     }
 
-    public  DbSet<CatalogoProducto> CatalogoProductos { get; set; }
+    public  DbSet<CatalogoProdServ> CatalogoProdServ { get; set; }
 
     public  DbSet<DatabaseLog> DatabaseLogs { get; set; }
 
@@ -24,7 +22,7 @@ public class SASContext : DbContext
 
     public  DbSet<FacturaDetalle> FacturaDetalles { get; set; }
 
-    public  DbSet<ProductoValido> ProductoValidos { get; set; }
+    public  DbSet<ProductoOServicio> ProductoOServicio { get; set; }
 
     public  DbSet<ReporteGasto> ReporteGastos { get; set; }
 

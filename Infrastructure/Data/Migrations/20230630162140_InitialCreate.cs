@@ -95,7 +95,7 @@ namespace Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false, comment: "Identificador para cada uno de los aumentos o disminuciones de saldo")
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ID_PERSONAL = table.Column<int>(type: "int", nullable: false, comment: "Identificador personal del trabajador"),
-                    Saldo = table.Column<decimal>(type: "money", nullable: false, comment: "Aumentos y disminuciones de saldo"),
+                    SaldoAD = table.Column<decimal>(type: "money", nullable: true, comment: "Aumentos y disminuciones de saldo"),
                     Descripcion = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -117,7 +117,7 @@ namespace Infrastructure.Data.Migrations
                     Total = table.Column<decimal>(type: "money", nullable: false, comment: "Monto total de la factura"),
                     UUID = table.Column<string>(type: "varchar(40)", unicode: false, maxLength: 40, nullable: true, comment: "UUID de la factura"),
                     SelloSAT = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true, comment: "Sello digital de emisor"),
-                    FechaTimbrado = table.Column<DateTime>(type: "datetime", nullable: true, comment: "Fecha del timbrado de la factura"),
+                    FechaTimbrado = table.Column<DateTime>(type: "datetime", nullable: false, comment: "Fecha del timbrado de la factura"),
                     FechaInsert = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())", comment: "Fecha de la insercion de la factura"),
                     XmlFactura = table.Column<string>(type: "xml", nullable: true, comment: "XML de la factura")
                 },
@@ -140,7 +140,7 @@ namespace Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SaldoID = table.Column<int>(type: "int", nullable: false, comment: "Identificador del aumento o disminucion de saldo"),
-                    SaldoAD = table.Column<decimal>(type: "money", nullable: false, comment: "Aumentos y disminuciones de saldo"),
+                    SaldoAD = table.Column<decimal>(type: "money", nullable: true, comment: "Aumentos y disminuciones de saldo"),
                     Descripcion = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true, comment: "Descripcion del aumento o disminucion de saldo")
                 },
                 constraints: table =>

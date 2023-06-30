@@ -25,9 +25,9 @@ public class FacturaDetalleConfiguration : IEntityTypeConfiguration<FacturaDetal
             .HasMaxLength(250)
             .IsUnicode(false)
             .HasComment("Notas para el administrador de los viaticos");
-        builder.Property(e => e.ProductoValidoId)
+        builder.Property(e => e.ProductoOServicioId)
             .HasComment("Identificador del producto que esta validado para poder facturar,Clave Servicio o Producto")
-            .HasColumnName("ProductoValidoID");
+            .HasColumnName("ProductoOServicioId");
         builder.Property(e => e.ValorUnitario)
             .HasComment("Valor unitario de servicio o producto")
             .HasColumnType("money");

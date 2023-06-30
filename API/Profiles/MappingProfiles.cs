@@ -16,6 +16,12 @@ public class MappingProfiles : Profile
 
         CreateMap<ReportePendienteDto, ReportesPendientesDto>();
 
+        CreateMap<CatalogoProdServ, CatalogoProdServDto>().ReverseMap();
+
+        CreateMap<ProductoOServicio, ProductoOServicioDto>().ReverseMap();
+
+
+
         //CreateMap<Producto, ProductoAddUpdateDto>()
         //    .ReverseMap()
         //    .ForMember(origen => origen.Categoria, dest => dest.Ignore())

@@ -13,7 +13,7 @@ public class FacturaDetalle : BaseEntity
     /// <summary>
     /// Identificador del producto que esta validado para poder facturar,Clave Servicio o Producto
     /// </summary>
-    public int ProductoValidoId { get; set; }
+    public int ProductoOServicioId { get; set; }
 
     /// <summary>
     /// Cantidad de servicios o productos

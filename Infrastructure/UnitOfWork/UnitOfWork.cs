@@ -1,5 +1,4 @@
-﻿using Core.Entities;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 
@@ -7,6 +6,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly SASContext _context;
     private IReporteGastoRepository _reporteGasto;
+    private ICatalogoProdServRepository _catalagoProdServ;
 
     public UnitOfWork(SASContext context)
     {
@@ -22,6 +22,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _reporteGasto = new ReporteGastoRepository(_context);
             }
             return _reporteGasto;
+        }
+    }
+
+    public ICatalogoProdServRepository CatalogoProdServs
+    {
+        get
+        {
+            if (_catalagoProdServ == null)
+            {
+                _catalagoProdServ = new CatalogoProdServRepository(_context);
+            }
+            return _catalagoProdServ;
         }
     }
 

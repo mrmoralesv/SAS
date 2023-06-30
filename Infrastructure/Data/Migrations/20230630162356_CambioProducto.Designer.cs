@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(SASContext))]
-    [Migration("20230623171255_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230630162356_CambioProducto")]
+    partial class CambioProducto
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Core.Entities.CatalogoProducto", b =>
+            modelBuilder.Entity("Core.Entities.CatalogoProdServ", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CatalogoProducto", "Viaticos");
+                    b.ToTable("CatalogoProdServ", "Viaticos");
                 });
 
             modelBuilder.Entity("Core.Entities.DatabaseLog", b =>
@@ -128,7 +128,7 @@ namespace Infrastructure.Data.Migrations
                         .HasDefaultValueSql("(getdate())")
                         .HasComment("Fecha de la insercion de la factura");
 
-                    b.Property<DateTime?>("FechaTimbrado")
+                    b.Property<DateTime>("FechaTimbrado")
                         .HasColumnType("datetime")
                         .HasComment("Fecha del timbrado de la factura");
 
@@ -233,14 +233,14 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("FacturaDetalle", "Viaticos");
                 });
 
-            modelBuilder.Entity("Core.Entities.ProductoValido", b =>
+            modelBuilder.Entity("Core.Entities.ProductoOServicio", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int")
                         .HasColumnName("Id")
                         .HasComment("Identificador del producto que esta validado para poder facturar,Clave Servicio o Producto");
 
-                    b.Property<int>("CatalogoProductoId")
+                    b.Property<int>("CatalogoProdServId")
                         .HasColumnType("int")
                         .HasColumnName("CatalogoProductoID")
                         .HasComment("Identificador para clasificacion del producto");
@@ -265,7 +265,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductoValido", "Viaticos");
+                    b.ToTable("ProductoOServicio", "Viaticos");
                 });
 
             modelBuilder.Entity("Core.Entities.ReporteGasto", b =>
@@ -328,9 +328,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnName("ID_PERSONAL")
                         .HasComment("Identificador personal del trabajador");
 
-                    b.Property<decimal>("SaldoAD")
+                    b.Property<decimal?>("SaldoAD")
                         .HasColumnType("money")
-                        .HasColumnName("Saldo")
+                        .HasColumnName("SaldoAD")
                         .HasComment("Aumentos y disminuciones de saldo");
 
                     b.HasKey("Id");
@@ -352,7 +352,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasComment("Descripcion del aumento o disminucion de saldo");
 
-                    b.Property<decimal>("SaldoAD")
+                    b.Property<decimal?>("SaldoAD")
                         .HasColumnType("money")
                         .HasComment("Aumentos y disminuciones de saldo");
 
@@ -370,18 +370,18 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Factura", b =>
                 {
-                    b.HasOne("Core.Entities.ReporteGasto", "ReporteGastos")
+                    b.HasOne("Core.Entities.ReporteGasto", "ReporteGasto")
                         .WithMany("Facturas")
                         .HasForeignKey("ReporteGastoId")
                         .IsRequired();
 
-                    b.Navigation("ReporteGastos");
+                    b.Navigation("ReporteGasto");
                 });
 
             modelBuilder.Entity("Core.Entities.FacturaDetalle", b =>
                 {
                     b.HasOne("Core.Entities.Factura", "Factura")
-                        .WithMany()
+                        .WithMany("FacturaDetalles")
                         .HasForeignKey("FacturaId")
                         .IsRequired()
                         .HasConstraintName("FK_Viaticos_Factura_FacturaID");
@@ -398,6 +398,11 @@ namespace Infrastructure.Data.Migrations
                         .HasConstraintName("FK_Cobranza_Saldo_SaldoID");
 
                     b.Navigation("Saldo");
+                });
+
+            modelBuilder.Entity("Core.Entities.Factura", b =>
+                {
+                    b.Navigation("FacturaDetalles");
                 });
 
             modelBuilder.Entity("Core.Entities.ReporteGasto", b =>

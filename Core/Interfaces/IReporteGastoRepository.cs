@@ -5,6 +5,5 @@ namespace Core.Interfaces;
 
 public interface IReporteGastoRepository : IGenericRepository<ReporteGasto>
 {
-
     Task<IEnumerable<ReportePendienteDto>> GetAllPendientesAsync();
 }

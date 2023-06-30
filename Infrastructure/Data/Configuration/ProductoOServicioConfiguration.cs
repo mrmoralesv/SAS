@@ -4,20 +4,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.Configuration;
 
-public class ProductoValidoConfiguration : IEntityTypeConfiguration<ProductoValido>
+public class ProductoOServicioConfiguration : IEntityTypeConfiguration<ProductoOServicio>
 {
-    public void Configure(EntityTypeBuilder<ProductoValido> builder)
+    public void Configure(EntityTypeBuilder<ProductoOServicio> builder)
     {
 
-        builder.ToTable("ProductoValido", "Viaticos");
+        builder.ToTable("ProductoOServicio", "Viaticos");
 
         builder.Property(e => e.Id)
             .ValueGeneratedNever()
             .HasComment("Identificador del producto que esta validado para poder facturar,Clave Servicio o Producto")
             .HasColumnName("Id");
-        builder.Property(e => e.CatalogoProductoId)
+        builder.Property(e => e.CatalogoProdServId)
             .HasComment("Identificador para clasificacion del producto")
-            .HasColumnName("CatalogoProductoID");
+            .HasColumnName("CatalogoProdServID");
         builder.Property(e => e.Estatus)
             .HasDefaultValueSql("((1))")
             .HasComment("0= Producto no valido para SINCI 1=Producto valido para SINCI");
@@ -29,5 +29,9 @@ public class ProductoValidoConfiguration : IEntityTypeConfiguration<ProductoVali
             .HasMaxLength(200)
             .IsUnicode(false)
             .HasComment("Descripcion del producto");
+
+        builder.HasOne(d => d.CatalogoProdServ).WithMany(p => p.ProductoOServicios)
+           .HasForeignKey(d => d.CatalogoProdServId)
+           .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Entities;
 
-public class CatalogoProducto : BaseEntity
+public class CatalogoProdServ : BaseEntity
 {
     /// <summary>
     /// Identificador de la clase de los productos
@@ -24,4 +24,11 @@ public class CatalogoProducto : BaseEntity
     /// Clase de la Division
     /// </summary>
     public string Clase { get; set; } = null!;
+
+    public CatalogoProdServ()
+    {
+        ProductoOServicios = new List<ProductoOServicio>();
+    }
+    public ICollection<ProductoOServicio> ProductoOServicios { get; set; }
+
 }

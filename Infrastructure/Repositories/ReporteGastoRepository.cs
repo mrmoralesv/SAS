@@ -4,7 +4,6 @@ using Core.Interfaces;
 using Dapper;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 public class ReporteGastoRepository : GenericRepository<ReporteGasto>, IReporteGastoRepository
@@ -25,7 +24,6 @@ public class ReporteGastoRepository : GenericRepository<ReporteGasto>, IReporteG
                         .Include(p => p.Facturas)
                         .ThenInclude(f => f.FacturaDetalles)
                         .FirstOrDefaultAsync(p => p.Id == id);
-
     }
 
     public override async Task<IEnumerable<ReporteGasto>> GetAllAsync()

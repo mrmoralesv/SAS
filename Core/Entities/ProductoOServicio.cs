@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Entities;
 
-public class ProductoValido : BaseEntity
+public class ProductoOServicio : BaseEntity
 {
     /// <summary>
     /// Identificador del producto que esta validado para poder facturar,Clave Servicio o Producto
@@ -13,7 +13,8 @@ public class ProductoValido : BaseEntity
     /// <summary>
     /// Identificador para clasificacion del producto
     /// </summary>
-    public int CatalogoProductoId { get; set; }
+    public int CatalogoProdServId { get; set; }
+    public CatalogoProdServ CatalogoProdServ { get; set; }
 
     /// <summary>
     /// Descripcion del producto
@@ -29,4 +30,6 @@ public class ProductoValido : BaseEntity
     /// Fecha en que se inserto el producto
     /// </summary>
     public DateTime? FechaInsert { get; set; }
+
+
 }

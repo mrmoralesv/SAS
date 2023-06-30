@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.Configuration;
 
-internal class CatalogoProductoConfiguration : IEntityTypeConfiguration<CatalogoProducto>
+internal class CatalogoProdServConfiguration : IEntityTypeConfiguration<CatalogoProdServ>
 {
-    public void Configure(EntityTypeBuilder<CatalogoProducto> builder)
+    public void Configure(EntityTypeBuilder<CatalogoProdServ> builder)
     {
-        builder.ToTable("CatalogoProducto", "Viaticos");
+        builder.ToTable("CatalogoProdServ", "Viaticos");
 
         builder.Property(e => e.Id)
             .HasComment("Identificador de la clase de los productos")
