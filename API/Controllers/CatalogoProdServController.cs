@@ -3,7 +3,6 @@ using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.InteropServices;
 
 namespace API.Controllers;
 
@@ -26,8 +25,8 @@ public class CatalogoProdServController : BaseApiController
     {
         var CatalogoProdOServ = await _unitOfWork.CatalogoProdServs
             .GetAllAsync();
-        var CatalogoProdOServDto = _mapper.Map<List<CatalogoProdServDto>>(CatalogoProdOServ);
-        return Ok(CatalogoProdOServDto);
+         
+        return _mapper.Map<List<CatalogoProdServDto>>(CatalogoProdOServ);
     }
 
 
@@ -38,13 +37,13 @@ public class CatalogoProdServController : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CatalogoProdServDto>> Get(int id)
     {
-        var ProductoOServicio = await _unitOfWork.CatalogoProdServs
+        var CatalogoProdOServ = await _unitOfWork.CatalogoProdServs
             .GetByIdAsync(id);
 
-        if (ProductoOServicio == null)
+        if (CatalogoProdOServ == null)
             return NotFound();
-        var objeto = _mapper.Map<CatalogoProdServDto>(ProductoOServicio);
-        return _mapper.Map<CatalogoProdServDto>(ProductoOServicio);
+
+        return _mapper.Map<CatalogoProdServDto>(CatalogoProdOServ);
     }
 
     //POST: api/catalogoprodserv

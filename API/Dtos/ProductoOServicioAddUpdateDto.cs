@@ -2,7 +2,7 @@
 
 namespace API.Dtos;
 
-public class ProductoOServicioDto
+public class ProductoOServicioAddUpdateDto
 {
     public int Id { get; set; }
     public int CatalogoProdServId { get; set; }

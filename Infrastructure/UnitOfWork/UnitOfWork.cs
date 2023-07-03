@@ -7,6 +7,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private readonly SASContext _context;
     private IReporteGastoRepository _reporteGasto;
     private ICatalogoProdServRepository _catalagoProdServ;
+    private IProductoOServicioRepository _productoOServicio;
 
     public UnitOfWork(SASContext context)
     {
@@ -34,6 +35,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _catalagoProdServ = new CatalogoProdServRepository(_context);
             }
             return _catalagoProdServ;
+        }
+    }
+
+    public IProductoOServicioRepository ProductoOServicios
+    {
+        get
+        {
+            if (_productoOServicio == null)
+            {
+                _productoOServicio = new ProductoOServicioRepository(_context);
+            }
+            return _productoOServicio;
         }
     }
 

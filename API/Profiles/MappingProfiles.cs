@@ -26,5 +26,11 @@ public class MappingProfiles : Profile
             .ReverseMap()
             .ForMember(origen => origen.ProductoOServicios, dest => dest.Ignore());
 
+
+        CreateMap<ProductoOServicio, ProductoOServicioAddUpdateDto>()
+            .ReverseMap()
+            .ForMember(origen => origen.CatalogoProdServ, dest => dest.Ignore());
+
+
     }
 }
