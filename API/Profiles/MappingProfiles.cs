@@ -22,10 +22,9 @@ public class MappingProfiles : Profile
 
 
 
-        //CreateMap<Producto, ProductoAddUpdateDto>()
-        //    .ReverseMap()
-        //    .ForMember(origen => origen.Categoria, dest => dest.Ignore())
-        //    .ForMember(origen => origen.Marca, dest => dest.Ignore());
+        CreateMap<CatalogoProdServ, CatalogoProdServAddUpdateDto>()
+            .ReverseMap()
+            .ForMember(origen => origen.ProductoOServicios, dest => dest.Ignore());
 
     }
 }
